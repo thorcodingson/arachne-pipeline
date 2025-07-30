@@ -137,3 +137,9 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# macOS systen files
+.DS_Store
+
+# Kubernetes local configuration
+.kube/config

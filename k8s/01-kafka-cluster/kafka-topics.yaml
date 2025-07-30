@@ -1,0 +1,22 @@
+# k8s/01-kafka-cluster/kafka-topics.yaml
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: html-to-process
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: arachne-cluster
+spec:
+  partitions: 3
+  replicas: 1
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: data-to-persist
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: arachne-cluster
+spec:
+  partitions: 3
+  replicas: 1
