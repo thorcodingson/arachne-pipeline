@@ -127,6 +127,34 @@ kubectl apply -f [https://github.com/strimzi/strimzi-kafka-operator/releases/dow
 
 kubectl apply -f k8s/01-kafka-cluster/ -n kafka
 
+### Step 3: Deploy Stateful Services
+
+Deploy PostgreSQL for data persistance and Redis for caching.
+
+kubectl apply -f k8s/02-stateful-services/
+
+### Step 4: Deploy Application Services
+
+Build and push Docker images to a registry, then deploy the application's mocroservices.
+
+# Example for one service (repeat for all)
+
+# cd services/processor-service
+
+# docker build -t your-registry/processor-service:latest .
+
+# docker push your-registry/processor-service:latest
+
+# Deploy all application services to Kubernetes
+
+kubectl apply -f k8s/03-apps/
+
+### Step 5: Configure Autoscaling
+
+Apply Horizontal Pod Autoscaler manifest to enable automatic scaling for the processor-service.
+
+kubectl apply -f k8s/04-scaling-monitoring/
+
 ✨ Key Features
 
 - Asynchronous Data Pipeline: Resilient and fault-tolerant communication based on Apache Kafka.
