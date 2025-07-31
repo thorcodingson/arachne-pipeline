@@ -5,12 +5,11 @@ metadata:
   namespace: kafka
 spec:
   kafka:
-    version: 4.0.0
+    version: 3.6.1
     config:
       process.roles: 'controller,broker'
-      node.id: '0'
       controller.quorum.voters: '0@arachne-cluster-kafka-0.arachne-cluster-kafka-brokers.kafka.svc:9093'
-      inter.broker.protocol.version: '4.0'
+      inter.broker.protocol.version: '3.6'
     listeners:
       - name: plain
         port: 9092
@@ -20,7 +19,7 @@ spec:
         port: 9093
         type: internal
         tls: false
-  kraft:
-    enabled: true
   nodePools:
     - name: arachne-brokers
+  kraft:
+    enabled: true
