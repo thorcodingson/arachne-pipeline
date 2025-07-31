@@ -1,17 +1,20 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaNodePool
 metadata:
-  name: arachne-brokers
+  name: dual-role
   namespace: kafka
+  labels:
+    strimzi.io/cluster: arachne-cluster
 spec:
   replicas: 1
   roles:
-    - broker
     - controller
+    - broker
   storage:
     type: jbod
     volumes:
       - id: 0
         type: persistent-claim
-        size: 10Gi
+        size: 5Gi
         deleteClaim: false
+        kraftMetadata: shared
