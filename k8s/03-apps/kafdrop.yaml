@@ -32,5 +32,6 @@ spec:
   ports:
     - port: 9000
       targetPort: 9000
+      nodePort: 31111
   selector:
     app: kafdrop
