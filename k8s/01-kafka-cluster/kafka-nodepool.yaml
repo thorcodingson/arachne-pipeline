@@ -17,4 +17,5 @@ spec:
         type: persistent-claim
         size: 5Gi
         deleteClaim: false
+        class: local-path
         kraftMetadata: shared
