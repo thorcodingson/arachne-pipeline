@@ -20,9 +20,7 @@ spec:
           type: persistent-claim
           size: 10Gi
           deleteClaim: false
-  zookeeper:
-    replicas: 1
-    storage:
-      type: persistent-claim
-      size: 5Gi
-      deleteClaim: false
+    config:
+      'process.roles': broker,controller
+      'node.id': 0
+      'controller.quorum.voters': 0@arachne-cluster-kafka-0.arachne-cluster-kafka-brokers.kafka.svc:9093
