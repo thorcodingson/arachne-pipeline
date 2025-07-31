@@ -1,4 +1,3 @@
-# k8s/01-kafka-cluster/kafka-cluster.yaml
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
@@ -7,20 +6,21 @@ metadata:
 spec:
   kafka:
     version: 4.0.0
-    replicas: 1
+    config:
+      process.roles: 'controller,broker'
+      node.id: '0'
+      controller.quorum.voters: '0@arachne-cluster-kafka-0.arachne-cluster-kafka-brokers.kafka.svc:9093'
+      inter.broker.protocol.version: '4.0'
     listeners:
       - name: plain
         port: 9092
         type: internal
         tls: false
-    storage:
-      type: jbod
-      volumes:
-        - id: 0
-          type: persistent-claim
-          size: 10Gi
-          deleteClaim: false
-    config:
-      'process.roles': broker,controller
-      'node.id': 0
-      'controller.quorum.voters': 0@arachne-cluster-kafka-0.arachne-cluster-kafka-brokers.kafka.svc:9093
+      - name: controller
+        port: 9093
+        type: internal
+        tls: false
+  kraft:
+    enabled: true
+  nodePools:
+    - name: arachne-brokers
