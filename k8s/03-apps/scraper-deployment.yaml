@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: scraper-service
-          image: arachne.azurecr.io/scraper-service:0.2
+          image: arachne.azurecr.io/scraper-service:0.21
           ports:
             - containerPort: 8080
       imagePullSecrets:
